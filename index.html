@@ -24,7 +24,8 @@
       line-height: 1.5;
     }
 
-    /* HEADER */
+    /* ================= HEADER ================= */
+
     header {
       background: linear-gradient(135deg, #12355B, #1E5A88);
       color: white;
@@ -54,7 +55,9 @@
       color: #fff4cc;
     }
 
-    /* NAVIGATION */
+
+    /* ================= NAVIGATION ================= */
+
     nav {
       background: white;
       text-align: center;
@@ -76,7 +79,9 @@
       color: #D4A017;
     }
 
-    /* HERO */
+
+    /* ================= HERO ================= */
+
     .hero {
       text-align: center;
       padding: 55px 20px;
@@ -96,7 +101,9 @@
       color: #455a64;
     }
 
-    /* BUTTONS */
+
+    /* ================= BUTTONS ================= */
+
     .buttons {
       margin-top: 25px;
     }
@@ -125,7 +132,9 @@
       background: #25d366;
     }
 
-    /* PRODUCTS */
+
+    /* ================= PRODUCTS ================= */
+
     .products {
       padding: 45px 20px;
       max-width: 1100px;
@@ -153,6 +162,7 @@
       text-align: center;
       border-top: 4px solid #D4A017;
       transition: 0.2s;
+      overflow: hidden;
     }
 
     .card:hover {
@@ -160,16 +170,116 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.16);
     }
 
-    .photo {
-      height: 170px;
+
+    /* ================= PRODUCT IMAGE GALLERY ================= */
+
+    .photo-gallery {
+      width: 100%;
+      height: 180px;
       background: #eaf2f8;
       border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 15px;
+      touch-action: pan-y;
+    }
+
+    .photo-track {
+      display: flex;
+      width: 100%;
+      height: 180px;
+      transition: transform 0.35s ease;
+    }
+
+    .photo-track img {
+      min-width: 100%;
+      width: 100%;
+      height: 180px;
+
+      /*
+        Keeps the complete product visible.
+        The image will NOT be stretched.
+      */
+      object-fit: contain;
+
+      background: #eaf2f8;
+      display: block;
+    }
+
+
+    /* ================= GALLERY ARROWS ================= */
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 32px;
+      height: 32px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(18, 53, 91, 0.75);
+      color: white;
+
+      font-size: 16px;
+      cursor: pointer;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 55px;
-      margin-bottom: 15px;
+
+      z-index: 2;
     }
+
+    .gallery-btn:hover {
+      background: #12355B;
+    }
+
+    .gallery-prev {
+      left: 7px;
+    }
+
+    .gallery-next {
+      right: 7px;
+    }
+
+
+    /* ================= GALLERY DOTS ================= */
+
+    .gallery-dots {
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      right: 0;
+
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+
+      z-index: 2;
+    }
+
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+
+      cursor: pointer;
+
+      border: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .gallery-dot.active {
+      background: #D4A017;
+      transform: scale(1.2);
+    }
+
+
+    /* ================= PRODUCT TEXT ================= */
 
     .card h3 {
       color: #12355B;
@@ -181,7 +291,9 @@
       margin: 5px 0;
     }
 
-    /* CONTACT */
+
+    /* ================= CONTACT ================= */
+
     .contact {
       background: linear-gradient(135deg, #12355B, #1E5A88);
       color: white;
@@ -199,7 +311,9 @@
       font-size: 17px;
     }
 
-    /* FOOTER */
+
+    /* ================= FOOTER ================= */
+
     footer {
       background: #0B2239;
       color: white;
@@ -208,7 +322,9 @@
       font-size: 14px;
     }
 
-    /* MOBILE */
+
+    /* ================= MOBILE ================= */
+
     @media (max-width: 600px) {
 
       .logo {
@@ -256,13 +372,32 @@
       .product-grid {
         grid-template-columns: 1fr;
       }
+
+      /*
+        Mobile gallery size
+      */
+      .photo-gallery {
+        height: 200px;
+      }
+
+      .photo-track {
+        height: 200px;
+      }
+
+      .photo-track img {
+        height: 200px;
+      }
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- HEADER -->
+
+  <!-- ================= HEADER ================= -->
+
   <header>
 
     <img src="logo.jpeg"
@@ -278,7 +413,8 @@
   </header>
 
 
-  <!-- NAVIGATION -->
+  <!-- ================= NAVIGATION ================= -->
+
   <nav>
 
     <a href="#home">Home</a>
@@ -288,7 +424,8 @@
   </nav>
 
 
-  <!-- HOME -->
+  <!-- ================= HOME ================= -->
+
   <section class="hero" id="home">
 
     <h2>Quality Disposable Products</h2>
@@ -316,7 +453,8 @@
   </section>
 
 
-  <!-- PRODUCTS -->
+  <!-- ================= PRODUCTS ================= -->
+
   <section class="products" id="products">
 
     <h2>Our Products</h2>
@@ -324,153 +462,360 @@
     <div class="product-grid">
 
 
-      <!-- PRODUCT 1 -->
+      <!-- ================= PRODUCT 1 ================= -->
+
       <div class="card">
+
         <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="greenbuffet.jpeg" alt="Green Buffet Plate">
-    <img src="greenbuffetsq.jpg" alt="Green Buffet Plate">
-  </div>
-</div>
+
+          <div class="photo-track">
+
+            <img src="greenbuffet.jpeg"
+                 alt="Green Buffet Plate">
+
+            <img src="greenbuffetsq.jpg"
+                 alt="Green Buffet Plate">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Paper Plate - Buffet Plate</h3>
+
         <p><b>Size:</b> 12 inch</p>
+
         <p><b>Thickness:</b> 70 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 2 -->
+      <!-- ================= PRODUCT 2 ================= -->
+
       <div class="card">
-       <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="multiround.jpg" alt="Buffet Plate Multi">
-    <img src="multigreen.jpg" alt="Buffet Plate Multi">
-    <img src="multir.jpg" alt="Buffet Plate Multi">
-    <img src="multiroundplate.jpg" alt="Buffet Plate Multi">
-    <img src="multisqure.jpeg" alt="Buffet Plate Multi">
-  </div>
-</div>
+
+        <div class="photo-gallery">
+
+          <div class="photo-track">
+
+            <img src="multiround.jpg"
+                 alt="Buffet Plate Multi">
+
+            <img src="multigreen.jpg"
+                 alt="Buffet Plate Multi">
+
+            <img src="multir.jpg"
+                 alt="Buffet Plate Multi">
+
+            <img src="multiroundplate.jpg"
+                 alt="Buffet Plate Multi">
+
+            <img src="multisqure.jpeg"
+                 alt="Buffet Plate Multi">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Buffet Plate Multi</h3>
+
         <p><b>Size:</b> 12/14 inch</p>
+
         <p><b>Thickness:</b> 70/90 GSM</p>
-        <p><b>Type:</b> Round/squre</p>
+
+        <p><b>Type:</b> Round/square</p>
+
       </div>
 
 
-      <!-- PRODUCT 3 -->
+      <!-- ================= PRODUCT 3 ================= -->
+
       <div class="card">
-      <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="leafbuffet.jpg" alt="Leaf Buffet">
-  
-  </div>
-</div>
+
+        <div class="photo-gallery">
+
+          <div class="photo-track">
+
+            <img src="leafbuffet.jpg"
+                 alt="Leaf Buffet">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Leaf Buffet</h3>
+
         <p><b>Size:</b> 14 inch</p>
+
         <p><b>Thickness:</b> 100 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      
+      <!-- ================= PRODUCT 4 ================= -->
 
-
-      <!-- PRODUCT 5 -->
       <div class="card">
-       <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="leaf.jpg" alt="Leaf Plate">
-   
-  </div>
-</div>
 
+        <div class="photo-gallery">
 
+          <div class="photo-track">
 
-        
+            <img src="leaf.jpg"
+                 alt="Leaf Plate">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Leaf Plate</h3>
+
         <p><b>Size:</b> 18 inch</p>
+
         <p><b>Thickness:</b> 140 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 6 -->
+      <!-- ================= PRODUCT 5 ================= -->
+
       <div class="card">
+
         <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="leaf.jpg" alt="Leaf Plate">
-   
-  </div>
-</div>
+
+          <div class="photo-track">
+
+            <img src="leaf.jpg"
+                 alt="Leaf Plate">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Leaf Plate</h3>
+
         <p><b>Size:</b> 18 inch</p>
+
         <p><b>Thickness:</b> 70 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 7 -->
+      <!-- ================= PRODUCT 6 ================= -->
+
       <div class="card">
+
         <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="biryani.jpg" alt="Biryani Plate">
-   
-  </div>
-</div>
+
+          <div class="photo-track">
+
+            <img src="biryani.jpg"
+                 alt="Biryani Plate">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Biryani Plate</h3>
+
         <p><b>Size:</b> 12 inch</p>
+
         <p><b>Thickness:</b> 70 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 8 -->
+      <!-- ================= PRODUCT 7 ================= -->
+
       <div class="card">
+
         <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="WhatsApp Image 2026-08-17 at 2.38.31 PM (1).jpg" alt="Silver Foil PLate">
-   
-  </div>
-</div>
+
+          <div class="photo-track">
+
+            <img src="WhatsApp Image 2026-08-17 at 2.38.31 PM (1).jpg"
+                 alt="Silver Foil Plate">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Silver Foil Plate</h3>
+
         <p><b>Size:</b> 16 inch</p>
+
         <p><b>Thickness:</b> 80/110/140 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 9 -->
-      <div class="card">
-       <div class="photo-gallery">
-  <div class="photo-track">
-    <img src="multiplate.jpg" alt="Multi Sheet Plate">
-   
-  </div>
-</div>
+      <!-- ================= PRODUCT 8 ================= -->
 
-        
+      <div class="card">
+
+        <div class="photo-gallery">
+
+          <div class="photo-track">
+
+            <img src="multiplate.jpg"
+                 alt="Multi Sheet Plate">
+
+          </div>
+
+          <button class="gallery-btn gallery-prev"
+                  aria-label="Previous image">
+            ❮
+          </button>
+
+          <button class="gallery-btn gallery-next"
+                  aria-label="Next image">
+            ❯
+          </button>
+
+          <div class="gallery-dots"></div>
+
+        </div>
+
         <h3>Multi Sheet Plate</h3>
+
         <p><b>Size:</b> 18 inch</p>
-         <p><b>Thickness:</b> 80/110/140 GSM</p>
+
+        <p><b>Thickness:</b> 80/110/140 GSM</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 10 -->
+      <!-- ================= PRODUCT 9 ================= -->
+
       <div class="card">
-        <div class="photo">🥤</div>
+
+        <div class="photo">
+
+          🥤
+
+        </div>
+
         <h3>Water Glasses - Jumbo</h3>
+
         <p><b>Size:</b> Jumbo</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
-      <!-- PRODUCT 11 -->
+      <!-- ================= PRODUCT 10 ================= -->
+
       <div class="card">
-        <div class="photo">🥤</div>
+
+        <div class="photo">
+
+          🥤
+
+        </div>
+
         <h3>Water Glasses - Normal</h3>
+
         <p><b>Size:</b> Normal</p>
+
         <p><b>Type:</b> Round</p>
+
       </div>
 
 
@@ -479,7 +824,8 @@
   </section>
 
 
-  <!-- CONTACT -->
+  <!-- ================= CONTACT ================= -->
+
   <section class="contact" id="contact">
 
     <h2>Contact Lakshya Paper Plates</h2>
@@ -506,12 +852,175 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- ================= FOOTER ================= -->
+
   <footer>
 
     © 2026 Lakshya Paper Plates. All Rights Reserved.
 
   </footer>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    document.querySelectorAll(".photo-gallery").forEach(function(gallery) {
+
+      const track = gallery.querySelector(".photo-track");
+      const images = gallery.querySelectorAll("img");
+
+      const prevButton =
+        gallery.querySelector(".gallery-prev");
+
+      const nextButton =
+        gallery.querySelector(".gallery-next");
+
+      const dotsContainer =
+        gallery.querySelector(".gallery-dots");
+
+      let currentIndex = 0;
+
+      let startX = 0;
+      let endX = 0;
+
+
+      /* ================= ONE IMAGE ================= */
+
+      if (images.length <= 1) {
+
+        prevButton.style.display = "none";
+        nextButton.style.display = "none";
+        dotsContainer.style.display = "none";
+
+        return;
+      }
+
+
+      /* ================= CREATE DOTS ================= */
+
+      images.forEach(function(image, index) {
+
+        const dot = document.createElement("span");
+
+        dot.classList.add("gallery-dot");
+
+        if (index === 0) {
+          dot.classList.add("active");
+        }
+
+        dot.addEventListener("click", function() {
+
+          showImage(index);
+
+        });
+
+        dotsContainer.appendChild(dot);
+
+      });
+
+
+      const dots =
+        dotsContainer.querySelectorAll(".gallery-dot");
+
+
+      /* ================= SHOW IMAGE ================= */
+
+      function showImage(index) {
+
+        if (index < 0) {
+
+          index = images.length - 1;
+
+        }
+
+        if (index >= images.length) {
+
+          index = 0;
+
+        }
+
+        currentIndex = index;
+
+
+        track.style.transform =
+          "translateX(-" + (currentIndex * 100) + "%)";
+
+
+        dots.forEach(function(dot, dotIndex) {
+
+          dot.classList.toggle(
+            "active",
+            dotIndex === currentIndex
+          );
+
+        });
+
+      }
+
+
+      /* ================= NEXT BUTTON ================= */
+
+      nextButton.addEventListener("click", function() {
+
+        showImage(currentIndex + 1);
+
+      });
+
+
+      /* ================= PREVIOUS BUTTON ================= */
+
+      prevButton.addEventListener("click", function() {
+
+        showImage(currentIndex - 1);
+
+      });
+
+
+      /* ================= TOUCH START ================= */
+
+      gallery.addEventListener("touchstart", function(event) {
+
+        startX = event.touches[0].clientX;
+
+      }, { passive: true });
+
+
+      /* ================= TOUCH END ================= */
+
+      gallery.addEventListener("touchend", function(event) {
+
+        endX = event.changedTouches[0].clientX;
+
+        const difference = startX - endX;
+
+
+        /* Minimum swipe distance = 50px */
+
+        if (Math.abs(difference) > 50) {
+
+          if (difference > 0) {
+
+            /* Swipe LEFT */
+
+            showImage(currentIndex + 1);
+
+          } else {
+
+            /* Swipe RIGHT */
+
+            showImage(currentIndex - 1);
+
+          }
+
+        }
+
+      }, { passive: true });
+
+
+    });
+
+  </script>
 
 </body>
 </html>
